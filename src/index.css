@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@layer base {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(108, 92, 231, 0.2);
+    border-radius: 10px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(108, 92, 231, 0.4);
+  }
+
+  /* SCADA Blinking Animations (CSS-based, no JS) */
+  @keyframes blink-slow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  @keyframes blink-fast {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% { 
+      box-shadow: 0 0 8px currentColor;
+    }
+    50% { 
+      box-shadow: 0 0 16px currentColor;
+    }
+  }
+
+  @keyframes data-pulse {
+    0% { 
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.7;
+      transform: scale(1.05);
+    }
+    100% { 
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* CSS classes for SCADA indicators */
+  .scada-blink-warning {
+    animation: blink-slow 1s infinite;
+  }
+
+  .scada-blink-critical {
+    animation: blink-fast 0.5s infinite;
+  }
+
+  .scada-glow-critical {
+    animation: glow-pulse 1s infinite;
+  }
+
+  .data-arrival-pulse {
+    animation: data-pulse 0.6s ease-out;
+  }
+}
+
+body {
+  @apply bg-[#F8F9FF] text-slate-800 antialiased;
+}
+
+/* Glassmorphism utilities */
+.glass-card {
+  @apply bg-white/80 backdrop-blur-xl border border-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-2xl;
+}
